@@ -1,0 +1,14 @@
+# Number of TNT dropped per strike
+tnt-count: 300
+# Radius (blocks) of the area the TNT falls over
+radius: 8.0
+# How many blocks above the target the TNT spawns
+height: 60
+# TNT fuse in ticks (20 ticks = 1 second). Must be long enough to land first.
+fuse-ticks: 70
+# Max distance the rod can target (blocks)
+max-range: 200
+# Cooldown between strikes in seconds (stops spam/lag)
+cooldown-seconds: 3
+# Spawn TNT over this many ticks instead of all at once (reduces lag spike)
+spawn-over-ticks: 20

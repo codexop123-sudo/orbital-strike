@@ -1,0 +1,17 @@
+name: OrbitalStrike
+version: '1.0'
+main: me.orbital.strike.OrbitalStrike
+api-version: '26.3'
+description: Orbital Strike fishing rod - rains TNT from the sky.
+commands:
+  osc:
+    description: Gives you the Orbital Strike fishing rod.
+    usage: /osc
+    permission: orbitalstrike.give
+permissions:
+  orbitalstrike.give:
+    description: Allows /osc
+    default: op
+  orbitalstrike.use:
+    description: Allows firing the Orbital Strike rod
+    default: op
