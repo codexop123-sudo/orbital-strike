@@ -114,11 +114,7 @@ public final class OrbitalStrike extends JavaPlugin implements Listener {
         event.setUseInteractedBlock(Event.Result.DENY);
         event.setCancelled(true);
 
-        if (!player.isOp() && !player.hasPermission("orbitalstrike.use")) {
-            player.sendMessage(Component.text("You can't use this.", NamedTextColor.RED));
-            return;
-        }
-
+       
         long now = System.currentTimeMillis();
         long cooldownMs = (long) (getConfig().getDouble("cooldown-seconds", 3.0) * 1000);
         Long last = cooldowns.get(player.getUniqueId());
