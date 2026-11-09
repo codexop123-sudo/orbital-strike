@@ -1,7 +1,7 @@
 name: OrbitalStrike
 version: '1.0'
 main: me.orbital.strike.OrbitalStrike
-api-version: '26.3'
+api-version: '1.21'
 description: Orbital Strike fishing rod - rains TNT from the sky.
 commands:
   osc:
