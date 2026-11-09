@@ -76,9 +76,9 @@ public final class OrbitalStrike extends JavaPlugin implements Listener {
         meta.displayName(Component.text("Orbital Strike", NamedTextColor.RED, TextDecoration.BOLD)
                 .decoration(TextDecoration.ITALIC, false));
         meta.lore(List.of(
-                Component.text("Right click to call down", NamedTextColor.GRAY)
+                Component.text("", NamedTextColor.GRAY)
                         .decoration(TextDecoration.ITALIC, false),
-                Component.text("an orbital TNT strike.", NamedTextColor.GRAY)
+                Component.text("", NamedTextColor.GRAY)
                         .decoration(TextDecoration.ITALIC, false)));
         meta.setUnbreakable(true);
         meta.getPersistentDataContainer().set(rodKey, PersistentDataType.BYTE, (byte) 1);
