@@ -155,6 +155,7 @@ public final class OrbitalStrike extends JavaPlugin implements Listener {
         final int height = Math.max(5, getConfig().getInt("height", 60));
         final int fuse = Math.max(20, getConfig().getInt("fuse-ticks", 70));
         final int ticks = Math.max(1, getConfig().getInt("spawn-over-ticks", 20));
+        final float power = (float) getConfig().getDouble("explosion-power", 12.0);
 
         final double spawnY = Math.min(target.getY() + height, world.getMaxHeight() - 2);
         final double centerX = target.getX();
@@ -174,16 +175,30 @@ public final class OrbitalStrike extends JavaPlugin implements Listener {
                 ThreadLocalRandom rnd = ThreadLocalRandom.current();
                 int batch = Math.min(perTick, count - spawned);
                 for (int i = 0; i < batch; i++) {
-                    // Random point inside a circle.
-                    double angle = rnd.nextDouble(0, Math.PI * 2);
-                    double dist = Math.sqrt(rnd.nextDouble()) * radius;
+        // One TNT in the centre, the rest in rings around it.
+                    int n = spawned + i;
+                    double offX = 0;
+                    double offZ = 0;
+                    if (n > 0) {
+                        int ring = 1;
+                        int left = n - 1;
+                        while (left >= 6 * ring) {
+                            left -= 6 * ring;
+                            ring++;
+                        }
+                        double ringRadius = ring * 1.5;
+                        double a = (Math.PI * 2 / (6 * ring)) * left;
+                        offX = Math.cos(a) * ringRadius;
+                        offZ = Math.sin(a) * ringRadius;
+                    }
                     Location loc = new Location(world,
-                            centerX + Math.cos(angle) * dist,
-                            spawnY + rnd.nextDouble(0, 6),
-                            centerZ + Math.sin(angle) * dist);
+                            centerX + offX,
+                            spawnY,
+                            centerZ + offZ);
 
                     world.spawn(loc, TNTPrimed.class, tnt -> {
                         tnt.setFuseTicks(fuse);
+                        tnt.setYield(power);
                         tnt.setSource(player);
                         tnt.setVelocity(new Vector(0, -1.0, 0));
                     });
